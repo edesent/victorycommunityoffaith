@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-lato);
+  --font-serif: var(--font-playfair);
+
+  /* Victory Community of Faith — royal purple & antique gold, sampled from
+     the church's crown-cross "V" logo (purple #661562, gold #d1ad6a). The
+     token names keep the boilerplate's vocabulary: "brown" tokens carry the
+     purples, "burgundy" carries the brighter magenta-plum accent. */
+  --color-gold: #c9a352;
+  --color-gold-light: #e4cc96;
+  --color-gold-dark: #a3803a;
+  --color-cream: #faf5ef;
+  --color-cream-dark: #f1e8dd;
+  --color-warm-white: #fdfbf7;
+  --color-brown-deep: #2e0a2c;
+  --color-brown: #4b1048;
+  --color-brown-light: #661562;
+  --color-burgundy: #8a2f85;
+  --color-burgundy-dark: #5c1458;
+  --color-text-dark: #2b1c29;
+  --color-text-body: #4a3a48;
+  --color-text-light: #7a6a78;
+  --color-text-muted: #9e8f9c;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-text-body);
+  background-color: var(--color-warm-white);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scroll animation utility classes */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.fade-in-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero animations */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scrollBounce {
+  0%, 100% { transform: rotate(45deg) translateY(0); }
+  50% { transform: rotate(45deg) translateY(6px); }
+}
+
+.animate-fade-up {
+  opacity: 0;
+  animation: fadeUp 1s ease forwards;
+}
+
+.animation-delay-200 { animation-delay: 0.2s; }
+.animation-delay-400 { animation-delay: 0.4s; }
+.animation-delay-600 { animation-delay: 0.6s; }
+.animation-delay-800 { animation-delay: 0.8s; }
+.animation-delay-900 { animation-delay: 0.9s; }
+.animation-delay-1000 { animation-delay: 1s; }
+.animation-delay-1300 { animation-delay: 1.3s; }
+
+.animate-scroll-bounce {
+  animation: scrollBounce 2s ease infinite;
+}
+
+/* Iframe lazy-load placeholder */
+.iframe-shimmer {
+  background: linear-gradient(90deg, #f0e8d8 0%, #faf6ef 50%, #f0e8d8 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
