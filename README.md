@@ -14,7 +14,7 @@ Built and hosted by Pastor Eli — [elijahdesent.com](https://www.elijahdesent.c
 - **Church facts live in one file: `src/config/site.data.ts`** — name, tagline, pastor, phone, email, address, Facebook/YouTube links, YouTube channel ID. Change contact info or service-time-adjacent metadata there first. `src/config/site.ts` holds derived helpers; leave it alone.
 - **Every homepage section is a component in `src/components/`**, composed in `src/app/page.tsx`. To remove a section, delete its line in `page.tsx`.
 - **Pages:** `/` home · `/pastor` · `/statement-of-faith` · `/messages` (auto-updates from the church's YouTube channel) · `/give` · `/lead-institute` · `/plan-of-salvation`.
-- **Service times appear in three places:** `src/components/ServiceTimes.tsx`, `src/components/Footer.tsx`, and the JSON-LD block in `src/app/page.tsx`. Keep them in sync (currently: Worship Celebration Sun 11:00 AM · Word On Wednesday WOW 6:00 PM).
+- **Service times appear in three places:** `src/components/ServiceTimes.tsx`, `src/components/Footer.tsx`, and the JSON-LD block in `src/app/page.tsx`. Keep them in sync (currently: Sunday Worship 11 AM · Wednesday Bible Study 6 PM).
 - **Photos** are in `public/photos/` — these are the church's real photos (no stock, no AI images, please keep it that way). The logo is `public/logo.png`.
 - **Brand palette** (from the church's crown-cross "V" crest): royal purple `#661562`, antique gold `#c9a352`, warm cream backgrounds. The Tailwind token names keep the boilerplate vocabulary: `brown-*` tokens carry the purples, `burgundy` the brighter plum accent.
 - **Giving** goes through Cash App **$VictoryinWichitanow** (see `/give` and `src/components/Give.tsx`).

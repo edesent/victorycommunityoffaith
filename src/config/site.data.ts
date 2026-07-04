@@ -10,7 +10,7 @@ export const SITE_DATA = {
   shortName: "Victory",
   tagline: "People Empowered to Win",
   description:
-    "Victory Community of Faith is a progressive, Liberationist church in Wichita, Kansas. Join us for Worship Celebration Sundays at 11:00 AM and Word On Wednesday (WOW) Bible study at 6:00 PM. Empowering and inspiring the people of our community to experience victory through the message and ministry of Jesus Christ.",
+    "Victory Community of Faith is a progressive, Liberationist church in Wichita, Kansas. Come worship with us — Sundays at 11 AM and Wednesday Bible study at 6 PM. Empowering and inspiring the people of our community to experience victory through the message and ministry of Jesus Christ.",
   shortDescription:
     "A Liberationist church in Wichita, Kansas — People Empowered to Win.",
   url: "https://victorycommunityoffaith.vercel.app",

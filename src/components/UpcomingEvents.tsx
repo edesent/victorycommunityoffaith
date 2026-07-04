@@ -4,13 +4,13 @@ const events = [
   {
     date: { month: "Every", day: "Sun" },
     title: "Worship Celebration Service",
-    time: "Sundays • 11:00 AM",
+    time: "Sundays • 11 AM",
     body: "Powerful praise, prayer, and an empowering word — in person at 1016 E Pawnee and live on Facebook.",
   },
   {
     date: { month: "Every", day: "Wed" },
     title: "Word On Wednesday (WOW)",
-    time: "Wednesdays • 6:00 PM",
+    time: "Wednesdays • 6 PM",
     body: "Our mid-week Bible study — dig into the Word, ask questions, and pray together.",
   },
   {

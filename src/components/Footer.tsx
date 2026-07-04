@@ -12,9 +12,8 @@ const quickLinks = [
 ];
 
 const serviceTimes = [
-  { label: "Worship Celebration", time: "Sun 11:00 AM" },
-  { label: "Word On Wednesday (WOW)", time: "Wed 6:00 PM" },
-  { label: "Facebook Live", time: "Sun 11:00 AM" },
+  { label: "Sunday Worship", time: "11 AM" },
+  { label: "Wednesday Bible Study", time: "6 PM" },
 ];
 
 export default function Footer() {

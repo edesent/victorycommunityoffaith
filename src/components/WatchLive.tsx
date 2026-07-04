@@ -18,7 +18,7 @@ export default function WatchLive() {
                     <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500" />
                   </span>
                   <span className="text-xs font-bold tracking-[0.25em] uppercase text-gold-light">
-                    Live on Facebook — Sundays at 11:00 AM
+                    Live on Facebook — Sundays at 11 AM
                   </span>
                 </div>
                 <h2 className="font-serif text-3xl md:text-4xl font-bold text-white leading-snug mb-4">

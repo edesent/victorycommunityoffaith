@@ -3,21 +3,15 @@ import AnimateOnScroll from "./AnimateOnScroll";
 const services = [
   {
     day: "Sunday",
-    title: "Worship Celebration",
-    time: "11:00 AM",
-    detail: "Powerful praise, prayer, & preaching",
+    title: "Worship Service",
+    time: "11 AM",
+    detail: "Powerful praise, prayer, & preaching — in person and live on Facebook",
   },
   {
     day: "Wednesday",
-    title: "Word On Wednesday (WOW)",
-    time: "6:00 PM",
-    detail: "Mid-week Bible study for every age",
-  },
-  {
-    day: "Online",
-    title: "Facebook Live",
-    time: "Sun 11:00 AM",
-    detail: "Worship with us from anywhere",
+    title: "Bible Study",
+    time: "6 PM",
+    detail: "Word On Wednesday (WOW) — dig into the Word mid-week",
   },
 ];
 
@@ -28,7 +22,7 @@ export default function ServiceTimes() {
         <AnimateOnScroll>
           <div className="text-center mb-14">
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-text-dark leading-snug">
-              Join Us This <em className="text-brown-light italic">Week</em>
+              Come Worship <em className="text-brown-light italic">With Us!</em>
             </h2>
             <p className="text-text-body mt-3 max-w-2xl mx-auto">
               We gather at 1016 E Pawnee St in Wichita. Dress is come-as-you-are —
@@ -37,7 +31,7 @@ export default function ServiceTimes() {
           </div>
         </AnimateOnScroll>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
           {services.map((s, i) => (
             <AnimateOnScroll key={s.title} delay={i * 100}>
               <div className="h-full p-7 bg-warm-white rounded-2xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all border border-cream-dark">
