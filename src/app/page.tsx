@@ -17,6 +17,7 @@ import Give from "@/components/Give";
 import PhotoGallery from "@/components/PhotoGallery";
 import MapAddress from "@/components/MapAddress";
 import PrayerAndChat from "@/components/PrayerAndChat";
+import MobileFriendly from "@/components/MobileFriendly";
 import Footer from "@/components/Footer";
 import { SITE, logoUrl, ogImageUrl, phoneTel } from "@/config/site";
 
@@ -82,6 +83,7 @@ export default function Home() {
         <PhotoGallery />
         <MapAddress />
         <PrayerAndChat />
+        <MobileFriendly />
       </main>
       <Footer />
     </>
