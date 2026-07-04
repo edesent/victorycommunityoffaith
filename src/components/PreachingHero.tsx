@@ -3,18 +3,18 @@ import { brandTop, brandBottom } from "@/config/site";
 export default function PreachingHero() {
   return (
     <header id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background — the Victory sanctuary, washed in royal purple */}
+      {/* Background — Victory worship montage in royal purple */}
       <div className="absolute inset-0 z-0 bg-brown-deep">
         <img
-          src="/photos/sanctuary-wide.jpg"
-          alt="The sanctuary at Victory Community of Faith"
-          className="absolute inset-0 w-full h-full object-cover opacity-40"
+          src="/photos/hero-bg.jpg"
+          alt="Worship at Victory Community of Faith"
+          className="absolute inset-0 w-full h-full object-cover opacity-60"
         />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(201,163,82,0.18),transparent_60%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(201,163,82,0.12),transparent_60%)]" />
       </div>
 
       {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-brown-deep/75 via-brown-light/40 to-brown-deep/85 z-[1]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-brown-deep/70 via-brown-deep/35 to-brown-deep/85 z-[1]" />
 
       {/* Content */}
       <div className="relative z-[2] text-center text-white max-w-3xl px-5 py-10">

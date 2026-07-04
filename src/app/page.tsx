@@ -16,8 +16,7 @@ import LeadInstitute from "@/components/LeadInstitute";
 import Give from "@/components/Give";
 import PhotoGallery from "@/components/PhotoGallery";
 import MapAddress from "@/components/MapAddress";
-import PrayerRequest from "@/components/PrayerRequest";
-import ChatPastor from "@/components/ChatPastor";
+import PrayerAndChat from "@/components/PrayerAndChat";
 import Footer from "@/components/Footer";
 import { SITE, logoUrl, ogImageUrl, phoneTel } from "@/config/site";
 
@@ -82,8 +81,7 @@ export default function Home() {
         <Give />
         <PhotoGallery />
         <MapAddress />
-        <PrayerRequest />
-        <ChatPastor />
+        <PrayerAndChat />
       </main>
       <Footer />
     </>

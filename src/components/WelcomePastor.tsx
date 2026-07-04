@@ -10,9 +10,9 @@ export default function WelcomePastor() {
           <AnimateOnScroll>
             <div className="relative rounded-2xl overflow-hidden shadow-xl aspect-[4/5] bg-gradient-to-br from-brown-light to-brown-deep">
               <img
-                src="/photos/preaching.jpg"
-                alt={`${pastorFullName} ministering at Victory Community of Faith`}
-                className="absolute inset-0 w-full h-full object-cover"
+                src="/photos/pastor-wife.jpg"
+                alt={`${pastorFullName} and his wife`}
+                className="absolute inset-0 w-full h-full object-cover object-right"
               />
             </div>
           </AnimateOnScroll>

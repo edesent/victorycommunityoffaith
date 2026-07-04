@@ -47,11 +47,11 @@ export default function PastorPage() {
         />
         <section className="py-24 bg-warm-white">
           <div className="max-w-3xl mx-auto px-6">
-            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-8 mb-10">
+            <div className="mb-10">
               <img
-                src="/photos/pastor.jpg"
-                alt={pastorFullName}
-                className="w-40 h-46 sm:w-44 rounded-2xl object-cover shadow-lg ring-4 ring-gold/30 flex-shrink-0"
+                src="/photos/pastor-wife.jpg"
+                alt={`${pastorFullName} and his wife`}
+                className="w-full rounded-2xl object-cover shadow-lg ring-4 ring-gold/30 mb-8"
               />
               <p className="text-lg text-text-body leading-relaxed">
                 {pastorFullName} leads Victory Community of Faith — a progressive,
