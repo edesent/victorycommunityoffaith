@@ -17,14 +17,22 @@ const services = [
 
 export default function ServiceTimes() {
   return (
-    <section id="services" className="py-28 bg-cream">
-      <div className="max-w-7xl mx-auto px-6">
+    <section id="services" className="relative py-28 overflow-hidden bg-brown-deep">
+      {/* Background — praise and worship in our sanctuary */}
+      <img
+        src="/photos/praise-worship.jpg"
+        alt="Praise and worship at Victory Community of Faith"
+        className="absolute inset-0 w-full h-full object-cover opacity-45"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-brown-deep/85 via-brown-deep/55 to-brown-deep/85" />
+
+      <div className="relative max-w-7xl mx-auto px-6">
         <AnimateOnScroll>
           <div className="text-center mb-14">
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-text-dark leading-snug">
-              Come Worship <em className="text-brown-light italic">With Us!</em>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-white leading-snug">
+              Come Worship <em className="text-gold-light italic">With Us!</em>
             </h2>
-            <p className="text-text-body mt-3 max-w-2xl mx-auto">
+            <p className="text-white/80 mt-3 max-w-2xl mx-auto">
               We gather at 1016 E Pawnee St in Wichita. Dress is come-as-you-are —
               there&rsquo;s a seat and a family waiting for you.
             </p>
