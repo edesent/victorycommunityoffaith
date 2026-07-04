@@ -2,22 +2,28 @@ import AnimateOnScroll from "./AnimateOnScroll";
 
 const events = [
   {
-    date: { month: "Every", day: "Sun" },
-    title: "Worship Celebration Service",
-    time: "Sundays • 11 AM",
-    body: "Powerful praise, prayer, and an empowering word — in person at 1016 E Pawnee and live on Facebook.",
+    date: { month: "Jun", day: "07" },
+    title: "Holy Communion",
+    time: "Sunday • 11 AM",
+    body: "We gather at the Lord's table together during Worship Celebration.",
   },
   {
-    date: { month: "Every", day: "Wed" },
-    title: "Word On Wednesday (WOW)",
-    time: "Wednesdays • 6 PM",
-    body: "Our mid-week Bible study — dig into the Word, ask questions, and pray together.",
+    date: { month: "Jun", day: "14" },
+    title: "Liberation Sunday",
+    time: "Sunday • 11 AM",
+    body: "A celebration of the freedom Christ brings — every chain broken.",
   },
   {
-    date: { month: "Year", day: "Round" },
-    title: "L.E.A.D. Institute",
-    time: "In Person & Online",
-    body: "Leadership development, liberation theology, spiritual formation, and the discovery of purpose.",
+    date: { month: "Jun", day: "21" },
+    title: "Father's Day",
+    time: "Sunday • 11 AM",
+    body: "Honoring the fathers of Victory during Worship Celebration.",
+  },
+  {
+    date: { month: "Jun", day: "28" },
+    title: "Church Anniversary & Greater Glory Campaign Launch",
+    time: "After the 11 AM Service",
+    body: "Celebrating our anniversary, launching the Greater Glory Campaign, and enjoying the 2nd Quarter Fellowship Luncheon.",
   },
 ];
 
@@ -28,15 +34,15 @@ export default function UpcomingEvents() {
         <AnimateOnScroll>
           <div className="text-center mb-14">
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-text-dark leading-snug">
-              The Rhythm of <em className="text-brown-light italic">Victory</em>
+              Calendar of <em className="text-brown-light italic">Events</em>
             </h2>
             <p className="text-text-body mt-3 max-w-2xl mx-auto">
-              Mark your calendar — and bring a friend.
+              June at Victory — mark your calendar and bring a friend.
             </p>
           </div>
         </AnimateOnScroll>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {events.map((e, i) => (
             <AnimateOnScroll key={e.title} delay={i * 120}>
               <article className="h-full bg-warm-white rounded-2xl border border-cream-dark overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-1 transition-all">

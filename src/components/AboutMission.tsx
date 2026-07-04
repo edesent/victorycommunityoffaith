@@ -1,7 +1,7 @@
 import AnimateOnScroll from "./AnimateOnScroll";
 
 const pillars = [
-  { label: "Liberation", text: "A Liberationist church, striving to set the captives free — spiritually and practically, right here in our community." },
+  { label: "Liberation", text: "A Liberationist church, striving to set the captives free — breaking every chain, from spiritual bondage to crushing debt." },
   { label: "Purpose", text: "We don't want you to just fill a pew. We want to help you discover and fulfill the purpose God placed inside you." },
   { label: "Community", text: "Launching ministries and church plants that drive back despair, depression, disease, and defeat so urban communities thrive." },
 ];

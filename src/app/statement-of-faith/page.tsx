@@ -36,7 +36,7 @@ const articles = [
   },
   {
     title: "Liberation",
-    body: "We believe the Spirit of the Lord anointed Jesus to preach good news to the poor, heal the brokenhearted, and set at liberty them that are bruised (Luke 4:18) — and that His church is called to that same liberating work, spiritually and practically.",
+    body: "We believe the Spirit of the Lord anointed Jesus to preach good news to the poor, heal the brokenhearted, and set at liberty them that are bruised (Luke 4:18) — and that His church is called to that same liberating work: spiritual, practical, and financial, breaking every chain from bondage to debt.",
   },
   {
     title: "The Church",
