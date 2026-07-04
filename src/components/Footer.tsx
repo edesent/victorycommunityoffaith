@@ -1,4 +1,4 @@
-import { SITE, brandTop, brandBottom, phoneTel } from "@/config/site";
+import { SITE, phoneTel } from "@/config/site";
 
 const quickLinks = [
   { href: "#home", label: "Home" },
@@ -23,12 +23,11 @@ export default function Footer() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-12 pb-16 border-b border-cream-dark">
           {/* Brand */}
           <div className="flex flex-col items-center text-center sm:items-start sm:text-left">
-            <div className="w-14 h-14 rounded-full bg-cream flex items-center justify-center shadow-sm ring-1 ring-cream-dark mb-4 overflow-hidden">
-              <img src="/logo.png" alt={`${SITE.name} logo`} className="w-11 h-11 object-contain" />
-            </div>
-            <p className="font-serif text-lg text-text-dark mb-2 leading-tight">
-              {brandTop}<br />{brandBottom}
-            </p>
+            <img
+              src="/footer-logo.png"
+              alt={`${SITE.name} — Victory's Greater Glory Campaign crest`}
+              className="w-44 sm:w-52 mb-4"
+            />
             <p className="text-sm leading-relaxed text-text-light">
               {SITE.address.street}<br />
               {SITE.address.city}, {SITE.address.state} {SITE.address.zip}<br />
