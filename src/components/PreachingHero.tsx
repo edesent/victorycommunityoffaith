@@ -14,7 +14,7 @@ export default function PreachingHero() {
       </div>
 
       {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-brown-deep/70 via-brown-deep/35 to-brown-deep/85 z-[1]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-brown-deep/70 via-brown-deep/35 to-brown-deep z-[1]" />
 
       {/* Content */}
       <div className="relative z-[2] text-center text-white max-w-3xl px-5 py-10">

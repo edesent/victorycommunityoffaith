@@ -3,8 +3,13 @@ import { SITE } from "@/config/site";
 
 export default function WatchLive() {
   return (
-    <section id="watch-live" className="py-24 bg-warm-white">
-      <div className="max-w-5xl mx-auto px-6">
+    <section id="watch-live" className="relative">
+      {/* Split background — the card sits half in the hero, half in the pastor section */}
+      <div className="absolute inset-0 flex flex-col">
+        <div className="h-1/2 bg-brown-deep" />
+        <div className="h-1/2 bg-cream" />
+      </div>
+      <div className="relative max-w-5xl mx-auto px-6">
         <AnimateOnScroll>
           <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-burgundy via-burgundy-dark to-brown-deep p-10 md:p-14 shadow-xl">
             <div className="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-gold/10 blur-2xl" />

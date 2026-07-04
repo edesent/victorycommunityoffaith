@@ -3,7 +3,7 @@ import { pastorFullName, pastorShortName } from "@/config/site";
 
 export default function WelcomePastor() {
   return (
-    <section id="welcome" className="py-28 bg-cream">
+    <section id="welcome" className="pt-24 pb-28 bg-cream">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           {/* Photo */}
