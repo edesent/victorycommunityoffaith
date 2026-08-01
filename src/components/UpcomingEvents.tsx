@@ -1,32 +1,8 @@
 import AnimateOnScroll from "./AnimateOnScroll";
+import { EVENTS, MONTH_LABEL } from "@/config/content";
 
-const events = [
-  {
-    date: { month: "Jun", day: "07" },
-    title: "Holy Communion",
-    time: "Sunday • 11 AM",
-    body: "We gather at the Lord's table together during Worship Celebration.",
-  },
-  {
-    date: { month: "Jun", day: "14" },
-    title: "Liberation Sunday",
-    time: "Sunday • 11 AM",
-    body: "A celebration of the freedom Christ brings — every chain broken.",
-  },
-  {
-    date: { month: "Jun", day: "21" },
-    title: "Father's Day",
-    time: "Sunday • 11 AM",
-    body: "Honoring the fathers of Victory during Worship Celebration.",
-  },
-  {
-    date: { month: "Jun", day: "28" },
-    title: "Church Anniversary & Greater Glory Campaign Launch",
-    time: "After the 11 AM Service",
-    body: "Celebrating our anniversary, launching the Greater Glory Campaign, and enjoying the 2nd Quarter Fellowship Luncheon.",
-  },
-];
-
+// The month's calendar. Edit EVENTS and MONTH_LABEL in src/config/content.ts
+// when the church publishes a new Calendar of Events flyer.
 export default function UpcomingEvents() {
   return (
     <section id="events" className="py-28 bg-cream">
@@ -37,28 +13,29 @@ export default function UpcomingEvents() {
               Calendar of <em className="text-brown-light italic">Events</em>
             </h2>
             <p className="text-text-body mt-3 max-w-2xl mx-auto">
-              June at Victory — mark your calendar and bring a friend.
+              {MONTH_LABEL} at Victory — every Sunday at 11 AM. Mark your calendar
+              and bring a friend.
             </p>
           </div>
         </AnimateOnScroll>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {events.map((e, i) => (
-            <AnimateOnScroll key={e.title} delay={i * 120}>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
+          {EVENTS.map((e, i) => (
+            <AnimateOnScroll key={`${e.day}-${e.title}`} delay={i * 100}>
               <article className="h-full bg-warm-white rounded-2xl border border-cream-dark overflow-hidden shadow-sm hover:shadow-md hover:-translate-y-1 transition-all">
-                <div className="bg-brown-deep text-gold-light text-center py-4 px-6">
+                <div className="bg-brown-deep text-gold-light text-center py-4 px-4">
                   <p className="text-xs font-bold tracking-[0.25em] uppercase text-gold-light/80">
-                    {e.date.month}
+                    {e.month}
                   </p>
                   <p className="font-serif text-4xl font-bold text-white leading-none mt-1">
-                    {e.date.day}
+                    {e.day}
                   </p>
                 </div>
-                <div className="p-7">
-                  <p className="text-xs font-semibold tracking-[0.15em] uppercase text-gold-dark mb-2">
+                <div className="p-6">
+                  <p className="text-[11px] font-semibold tracking-[0.15em] uppercase text-gold-dark mb-2">
                     {e.time}
                   </p>
-                  <h3 className="font-serif text-xl font-semibold text-text-dark mb-3 leading-snug">
+                  <h3 className="font-serif text-lg font-semibold text-text-dark mb-3 leading-snug">
                     {e.title}
                   </h3>
                   <p className="text-sm text-text-body leading-relaxed">{e.body}</p>

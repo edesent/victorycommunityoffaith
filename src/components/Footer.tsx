@@ -1,19 +1,23 @@
 import { SITE, phoneTel } from "@/config/site";
+import { OFFICE_HOURS } from "@/config/content";
 
 const quickLinks = [
-  { href: "#home", label: "Home" },
-  { href: "#about", label: "About Us" },
-  { href: "#services", label: "Service Times" },
+  { href: "/about", label: "Our Story" },
+  { href: "/pastor", label: "Our Pastor" },
+  { href: "/messages", label: "Watch Sermons" },
+  { href: "/ministries", label: "Ministries" },
   { href: "/lead-institute", label: "L.E.A.D. Institute" },
-  { href: "/messages", label: "Messages" },
+  { href: "/store", label: "Victory Store" },
+  { href: "/weddings-and-care", label: "Weddings & Care" },
   { href: "/give", label: "Give Online" },
   { href: "/statement-of-faith", label: "What We Believe" },
   { href: "/plan-of-salvation", label: "Plan of Salvation" },
+  { href: "/contact", label: "Contact Us" },
 ];
 
 const serviceTimes = [
-  { label: "Sunday Worship", time: "11 AM" },
-  { label: "Wednesday Bible Study", time: "6 PM" },
+  { label: "Sunday Worship Celebration", time: "11 AM" },
+  { label: "Word On Wednesday (WOW)", time: "6 PM" },
 ];
 
 export default function Footer() {
@@ -51,13 +55,21 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Service Times */}
+          {/* Service Times + office hours */}
           <div className="text-center sm:text-left">
             <h4 className="font-serif text-base font-semibold text-text-dark mb-5">Service Times</h4>
-            <ul className="space-y-2.5">
+            <ul className="space-y-2.5 mb-7">
               {serviceTimes.map((s) => (
                 <li key={s.label} className="text-sm text-text-light">
                   <strong className="text-text-dark font-semibold">{s.label}</strong> — {s.time}
+                </li>
+              ))}
+            </ul>
+            <h4 className="font-serif text-base font-semibold text-text-dark mb-4">Church Office</h4>
+            <ul className="space-y-2">
+              {OFFICE_HOURS.map((o) => (
+                <li key={o.days} className="text-sm text-text-light">
+                  {o.days} — {o.hours}
                 </li>
               ))}
             </ul>

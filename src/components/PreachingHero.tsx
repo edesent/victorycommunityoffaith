@@ -32,13 +32,13 @@ export default function PreachingHero() {
         </p>
         <div className="flex gap-4 justify-center flex-wrap animate-fade-up animation-delay-1000">
           <a
-            href="#services"
+            href="/contact#visit"
             className="inline-block bg-gold text-brown-deep font-semibold text-sm tracking-wide uppercase px-9 py-3.5 rounded-full border-2 border-gold hover:bg-gold-light hover:border-gold-light hover:-translate-y-0.5 hover:shadow-lg transition-all"
           >
             Plan Your Visit
           </a>
           <a
-            href="#watch-live"
+            href="/messages#live"
             className="inline-block text-white font-semibold text-sm tracking-wide uppercase px-9 py-3.5 rounded-full border-2 border-white/50 hover:bg-white/10 hover:border-white hover:-translate-y-0.5 transition-all"
           >
             Watch Live

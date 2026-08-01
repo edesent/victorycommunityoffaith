@@ -6,7 +6,40 @@ import { pastorShortName } from "@/config/site";
 
 export default function PrayerAndChat() {
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState("");
   const [open, setOpen] = useState(false);
+
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setError("");
+    setSending(true);
+
+    const data = new FormData(event.currentTarget);
+    try {
+      const response = await fetch("/api/prayer", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: String(data.get("name") ?? "").trim(),
+          email: String(data.get("email") ?? "").trim(),
+          message: String(data.get("message") ?? "").trim(),
+          private: data.get("private") === "on",
+          botcheck: String(data.get("botcheck") ?? ""),
+        }),
+      });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        setError(result.error || "Something went wrong. Please try again.");
+        setSending(false);
+        return;
+      }
+      setSubmitted(true);
+    } catch {
+      setError("Something went wrong. Please try again.");
+      setSending(false);
+    }
+  }
 
   return (
     <section id="prayer" className="py-28 bg-warm-white">
@@ -45,21 +78,28 @@ export default function PrayerAndChat() {
               </div>
             ) : (
               <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  setSubmitted(true);
-                }}
+                onSubmit={handleSubmit}
                 className="p-8 md:p-10 bg-cream rounded-2xl border border-cream-dark space-y-5"
               >
                 <h3 className="font-serif text-xl font-semibold text-text-dark">
                   Send a Prayer Request
                 </h3>
+                {/* Honeypot — hidden from people, irresistible to bots. */}
+                <input
+                  type="text"
+                  name="botcheck"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                  className="hidden"
+                />
                 <div>
                   <label className="block text-xs font-bold tracking-[0.15em] uppercase text-text-light mb-2">
                     Your Name
                   </label>
                   <input
                     type="text"
+                    name="name"
                     required
                     placeholder="Jane Doe"
                     className="w-full px-4 py-3 rounded-lg bg-warm-white border border-cream-dark text-text-dark placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-gold/40 focus:border-gold transition-all"
@@ -72,6 +112,7 @@ export default function PrayerAndChat() {
                   </label>
                   <input
                     type="email"
+                    name="email"
                     required
                     placeholder="you@example.com"
                     className="w-full px-4 py-3 rounded-lg bg-warm-white border border-cream-dark text-text-dark placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-gold/40 focus:border-gold transition-all"
@@ -83,6 +124,7 @@ export default function PrayerAndChat() {
                     Prayer Request
                   </label>
                   <textarea
+                    name="message"
                     required
                     rows={5}
                     placeholder="Share whatever is on your heart..."
@@ -91,15 +133,26 @@ export default function PrayerAndChat() {
                 </div>
 
                 <label className="flex items-start gap-3 text-sm text-text-body">
-                  <input type="checkbox" className="mt-1 w-4 h-4 accent-brown-light" />
+                  <input
+                    type="checkbox"
+                    name="private"
+                    className="mt-1 w-4 h-4 accent-brown-light"
+                  />
                   <span>Keep my request private — only the pastor will see it.</span>
                 </label>
 
+                {error && (
+                  <p className="text-sm font-medium text-red-600 bg-red-50 border border-red-200 rounded-lg px-4 py-3">
+                    {error}
+                  </p>
+                )}
+
                 <button
                   type="submit"
-                  className="w-full sm:w-auto bg-brown-light text-white font-semibold text-sm tracking-wide uppercase px-9 py-3.5 rounded-full border-2 border-brown-light hover:bg-brown hover:border-brown hover:-translate-y-0.5 hover:shadow-lg transition-all"
+                  disabled={sending}
+                  className="w-full sm:w-auto bg-brown-light text-white font-semibold text-sm tracking-wide uppercase px-9 py-3.5 rounded-full border-2 border-brown-light hover:bg-brown hover:border-brown hover:-translate-y-0.5 hover:shadow-lg transition-all disabled:opacity-60 disabled:translate-y-0"
                 >
-                  Send Prayer Request
+                  {sending ? "Sending…" : "Send Prayer Request"}
                 </button>
               </form>
             )}

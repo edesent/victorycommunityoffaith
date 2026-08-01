@@ -20,7 +20,8 @@ export default function Give() {
                 <p className="text-white/80 leading-relaxed max-w-xl mb-3">
                   Your generosity fuels ministry in our community and Victory&rsquo;s
                   Greater Glory Campaign — eliminating debt and transforming
-                  God&rsquo;s house. Give securely on Cash App, or in person on Sunday.
+                  God&rsquo;s house. Give securely online by card, bank, Apple Pay,
+                  or PayPal — one time or every month.
                 </p>
                 <p className="font-serif italic text-white/60 text-sm">
                   &ldquo;Every man according as he purposeth in his heart, so let him give... for God loveth a cheerful giver.&rdquo;
@@ -30,12 +31,10 @@ export default function Give() {
 
               <div className="flex flex-col gap-3 w-full md:w-auto">
                 <a
-                  href="https://cash.app/$VictoryinWichitanow"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="/give#give-now"
                   className="inline-flex items-center justify-center gap-2 bg-gold text-brown-deep font-semibold text-sm tracking-wide uppercase px-9 py-4 rounded-full hover:bg-gold-light hover:-translate-y-0.5 hover:shadow-lg transition-all whitespace-nowrap"
                 >
-                  Give on Cash App
+                  Give Now
                 </a>
                 <a
                   href="/give"
