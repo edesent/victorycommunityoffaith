@@ -65,9 +65,37 @@ Cash App (`$VictoryinWichitanow`), in person, and by mail are also listed on `/g
 
 Checkout turns on the moment `STRIPE_SECRET_KEY` is set in Vercel. Until then, the cart shows a "call the church to order" message instead of a broken button. The page is `force-dynamic` so adding the key takes effect without a rebuild.
 
-### Forms — Resend
+### Live chat — Slack
 
-Contact, prayer, volunteer, L.E.A.D. enrollment, facility rental, and counseling forms all post to API routes that email the church. They need `RESEND_API_KEY` in Vercel; without it, forms show "The form isn't configured yet."
+A chat bubble sits on every page (installed in `src/app/layout.tsx`). Messages land in the church's Slack channel **#victory-cof** (`C0BMBV8NZAS`) as a thread; whoever replies in Slack shows up live in the visitor's chat window. The bubble wears Dr. Pennington's photo so visitors know they're writing to a person.
+
+Settings live in `CHAT` in `src/config/content.ts`. The `wbc_` key is a **public widget key** — it's meant to ship in the page HTML, so it isn't a secret. The tag is a plain `<script defer>` rather than `next/script` on purpose: the widget reads its options off `document.currentScript`, so it must reach the browser exactly as written.
+
+Any button anywhere on the site can open the chat with **`window.WBCChat.open()`** — that's how the "Start a Conversation" button on the home page works. Don't build a second chat UI; call that.
+
+### Forms can go to Slack instead of email
+
+Two delivery paths exist, and **a form can use either one**:
+
+| Path | Where it lands | Setup needed |
+| --- | --- | --- |
+| **Slack** (`/api/visit`) | Straight into #victory-cof, seconds later | **None — already working** |
+| **Email** (Resend) | The church inbox | Needs `RESEND_API_KEY` + a verified domain |
+
+**Plan Your Visit** (`/contact#visit`) already uses the Slack path, which is why it works today while the email forms don't.
+
+**To move any other form to Slack**, point its `<RequestForm endpoint="…">` at a route modelled on [src/app/api/visit/route.ts](src/app/api/visit/route.ts). That route just POSTs to the chat backend:
+
+```
+POST https://slackwebsitechat.vercel.app/api/chat/contact-form
+{ apiKey, subject, name, contact, message }
+```
+
+`subject` becomes the bold headline in Slack, and `message` accepts Slack markdown, so label/value lines render nicely. Rate limit is 5 submissions per IP per 10 minutes. Good candidates to switch: contact, prayer, and counseling — anything the pastor wants on his phone immediately. Leave orders and enrollment on email, where a written record matters more than speed.
+
+### Forms — Resend (email path)
+
+Contact, prayer, volunteer, L.E.A.D. enrollment, facility rental, and counseling forms post to API routes that email the church. They need `RESEND_API_KEY` in Vercel; without it, forms show "The form isn't configured yet."
 
 Destination and sender are set in `src/lib/email.ts`. **The sender is currently `onboarding@resend.dev`, which only delivers to the address the Resend account was created with.** To reach `jpenny316@gmail.com`, verify `victorychurchwichita.com` at https://resend.com/domains and switch `SENDER` to the commented line in that file.
 
