@@ -146,7 +146,10 @@ export default function PrayerAndChat() {
                     name="private"
                     className="mt-1 w-4 h-4 accent-brown-light"
                   />
-                  <span>Keep my request private — only the pastor will see it.</span>
+                  <span>
+                    Keep my request private — for the pastoral team only, not to be
+                    shared or read aloud.
+                  </span>
                 </label>
 
                 {error && (

@@ -1,5 +1,12 @@
-import { formatFields, sendChurchEmail } from "@/lib/email";
+import { sendToSlack } from "@/lib/slack-form";
 
+// Prayer requests → the church's Slack channel, so the pastor and prayer team
+// see them the moment they come in.
+//
+// On privacy: #victory-cof is a private Slack channel, but it is not just the
+// pastor. When someone ticks "keep this private" we flag it loudly at the top
+// of the message rather than pretending it went somewhere narrower — and the
+// form's own wording says "pastoral team", not "the pastor alone".
 export async function POST(request: Request) {
   let body: Record<string, unknown>;
   try {
@@ -22,20 +29,14 @@ export async function POST(request: Request) {
     );
   }
 
-  const { text, html } = formatFields(
-    [
-      ["Name", name],
-      ["Email", email],
-      ["Private", isPrivate ? "Yes — pastor only" : "No — may be shared with the prayer team"],
-    ],
-    message
-  );
-
-  const result = await sendChurchEmail({
-    subject: `${isPrivate ? "[PRIVATE] " : ""}Prayer request from ${name}`,
-    replyTo: email,
-    text,
-    html,
+  const result = await sendToSlack({
+    subject: isPrivate ? "🔒 Prayer request (private)" : "🙏 Prayer request",
+    name,
+    contact: email,
+    banner: isPrivate
+      ? "_Marked private — please keep this within the pastoral team and don't read it out._"
+      : undefined,
+    message,
   });
 
   if (!result.ok) {

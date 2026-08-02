@@ -77,25 +77,31 @@ Any button anywhere on the site can open the chat with **`window.WBCChat.open()`
 
 Two delivery paths exist, and **a form can use either one**:
 
-| Path | Where it lands | Setup needed |
-| --- | --- | --- |
-| **Slack** (`/api/visit`) | Straight into #victory-cof, seconds later | **None — already working** |
-| **Email** (Resend) | The church inbox | Needs `RESEND_API_KEY` + a verified domain |
+| Form | Path | Where it lands | Working now? |
+| --- | --- | --- | --- |
+| Plan Your Visit | `/api/visit` | Slack — #victory-cof | ✅ Yes |
+| Contact | `/api/contact` | Slack — #victory-cof | ✅ Yes |
+| Prayer request | `/api/prayer` | Slack — #victory-cof | ✅ Yes |
+| Volunteer, enrollment, rental, counseling | `/api/request` | Email via Resend | ⏳ Needs `RESEND_API_KEY` |
 
-**Plan Your Visit** (`/contact#visit`) already uses the Slack path, which is why it works today while the email forms don't.
+The Slack forms work today because that path needs no API key and no verified domain — and they reach the pastor's phone in seconds rather than an inbox.
 
-**To move any other form to Slack**, point its `<RequestForm endpoint="…">` at a route modelled on [src/app/api/visit/route.ts](src/app/api/visit/route.ts). That route just POSTs to the chat backend:
+All three share [src/lib/slack-form.ts](src/lib/slack-form.ts): call `sendToSlack({subject, name, contact, fields, message, banner})`. `subject` is the bold headline, `fields` are label/value pairs printed in order, `banner` is an italic note above everything.
+
+**On prayer privacy:** #victory-cof is a private channel, but it is not only the pastor. When someone ticks "keep this private" the message is flagged `🔒` with a banner asking the team to keep it in-house. The checkbox on the form says "for the pastoral team only" rather than "only the pastor" so the promise matches reality. **If Dr. Pennington wants private requests to reach him alone, they need a different destination** — a DM or a separate channel — because this one has other people in it.
+
+**To move another form to Slack**, point its `<RequestForm endpoint="…">` at a route modelled on [src/app/api/visit/route.ts](src/app/api/visit/route.ts). Those routes POST to the chat backend:
 
 ```
 POST https://slackwebsitechat.vercel.app/api/chat/contact-form
 { apiKey, subject, name, contact, message }
 ```
 
-`subject` becomes the bold headline in Slack, and `message` accepts Slack markdown, so label/value lines render nicely. Rate limit is 5 submissions per IP per 10 minutes. Good candidates to switch: contact, prayer, and counseling — anything the pastor wants on his phone immediately. Leave orders and enrollment on email, where a written record matters more than speed.
+`subject` becomes the bold headline in Slack, and `message` accepts Slack markdown, so label/value lines render nicely. Rate limit is 5 submissions per IP per 10 minutes. Counseling is the next good candidate to switch. Leave orders and enrollment on email, where a written record matters more than speed.
 
 ### Forms — Resend (email path)
 
-Contact, prayer, volunteer, L.E.A.D. enrollment, facility rental, and counseling forms post to API routes that email the church. They need `RESEND_API_KEY` in Vercel; without it, forms show "The form isn't configured yet."
+Volunteer, L.E.A.D. enrollment, facility rental, and counseling still post to `/api/request`, which emails the church. It needs `RESEND_API_KEY` in Vercel; without it, those forms show "The form isn't configured yet."
 
 Destination and sender are set in `src/lib/email.ts`. **The sender is currently `onboarding@resend.dev`, which only delivers to the address the Resend account was created with.** To reach `jpenny316@gmail.com`, verify `victorychurchwichita.com` at https://resend.com/domains and switch `SENDER` to the commented line in that file.
 

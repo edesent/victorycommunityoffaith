@@ -1,5 +1,6 @@
-import { formatFields, sendChurchEmail } from "@/lib/email";
+import { readDetails, sendToSlack } from "@/lib/slack-form";
 
+// Contact form → the church's Slack channel.
 export async function POST(request: Request) {
   let body: Record<string, unknown>;
   try {
@@ -24,23 +25,12 @@ export async function POST(request: Request) {
     );
   }
 
-  const { text, html } = formatFields(
-    [
-      ["Name", name],
-      ["Email", email],
-      ["Phone", phone],
-      ["Reason", reason],
-    ],
-    message
-  );
-
-  const result = await sendChurchEmail({
-    subject: reason
-      ? `Website: ${reason} — ${name}`
-      : `New website message from ${name}`,
-    replyTo: email,
-    text,
-    html,
+  const result = await sendToSlack({
+    subject: reason ? `💬 ${reason}` : "💬 New website message",
+    name,
+    contact: phone ? `${email} · ${phone}` : email,
+    fields: readDetails(body.details),
+    message,
   });
 
   if (!result.ok) {
