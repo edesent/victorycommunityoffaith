@@ -436,6 +436,19 @@ export const GIVEBUTTER = {
   campaignCode: "OMWHVC",
 };
 
+// ── Live chat / Slack ────────────────────────────────────────────────────────
+// WBC Chat (slackwebsitechat) drives both the chat bubble in layout.tsx and the
+// "Plan Your Visit" form, which posts straight into the church's Slack channel
+// #victory-cof. This key is a public widget key — it ships in the page HTML by
+// design — so it lives here rather than in an env var.
+export const CHAT = {
+  apiKey: "wbc_714b0c9b3af11bf2fa520d1aa564c1a1593915aafbcc361a",
+  origin: "https://slackwebsitechat.vercel.app",
+  agentIcon: "/photos/pastor.jpg",
+  greeting:
+    "Hi there! Thanks for visiting Victory Community of Faith. Is there anything I can help you with?",
+};
+
 // ── Media ────────────────────────────────────────────────────────────────────
 // Leave podcastUrl empty until there is a real feed — an empty value hides the
 // podcast card rather than shipping a broken link.

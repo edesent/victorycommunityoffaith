@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
 import { Playfair_Display, Lato } from "next/font/google";
 import { SITE } from "@/config/site";
+import { CHAT } from "@/config/content";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -128,19 +128,23 @@ export default function RootLayout({
         {children}
 
         {/*
-          Live chat bubble (WBC Chat). Messages land in the church's Slack —
-          channel C0BMBV8NZAS. The avatar is Dr. Pennington's photo, so visitors
-          see they're writing to a person. Any button on the site can open it
-          with window.WBCChat.open().
+          Live chat bubble (WBC Chat). Messages land in the church's Slack,
+          #victory-cof. The avatar is Dr. Pennington's photo, so visitors see
+          they're writing to a person. Any button on the site can open it with
+          window.WBCChat.open().
+
+          Deliberately a plain <script defer> rather than next/script: the widget
+          reads its settings off document.currentScript, so the tag (and every
+          data- attribute) needs to be in the served HTML as written.
         */}
-        <Script
-          src="https://slackwebsitechat.vercel.app/widget/wbc-chat.js"
-          data-api="https://slackwebsitechat.vercel.app"
-          data-key="wbc_714b0c9b3af11bf2fa520d1aa564c1a1593915aafbcc361a"
-          data-agent-icon-url="/photos/pastor.jpg"
-          data-accent-color="#661562"
-          data-greeting="Hi there! Thanks for visiting Victory Community of Faith. Is there anything I can help you with?"
-          strategy="afterInteractive"
+        <script
+          src={`${CHAT.origin}/widget/wbc-chat.js`}
+          data-api={CHAT.origin}
+          data-key={CHAT.apiKey}
+          data-agent-icon-url={CHAT.agentIcon}
+          data-accent-color={SITE.accentColor}
+          data-greeting={CHAT.greeting}
+          defer
         />
       </body>
     </html>

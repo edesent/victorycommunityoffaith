@@ -156,14 +156,12 @@ export default function ContactPage() {
             {/* Form */}
             <AnimateOnScroll delay={150}>
               <div>
-                <span id="visit" className="block -mt-24 pt-24" aria-hidden="true" />
                 <h2 className="font-serif text-3xl font-bold text-text-dark leading-snug mb-3">
                   Send Us a <em className="text-brown-light italic">Message</em>
                 </h2>
                 <p className="text-text-body leading-relaxed mb-7">
-                  Planning your first visit? Tell us you&rsquo;re coming and
-                  we&rsquo;ll look for you, save you a seat, and make sure someone
-                  meets you at the door.
+                  Questions about the church, the ministries, or anything else —
+                  write to us here and we&rsquo;ll get back to you.
                 </p>
                 <RequestForm
                   endpoint="/api/contact"
@@ -188,8 +186,105 @@ export default function ContactPage() {
           </div>
         </section>
 
+        {/* Plan your visit — goes straight to the church's Slack */}
+        <section
+          id="visit"
+          className="py-24 bg-brown-deep relative overflow-hidden scroll-mt-20"
+        >
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(212,175,85,0.16),transparent_60%)]" />
+          <div className="relative max-w-6xl mx-auto px-6 grid lg:grid-cols-[1fr_1.1fr] gap-12 items-start">
+            <AnimateOnScroll>
+              <div>
+                <span className="inline-block text-xs font-bold tracking-[0.25em] uppercase text-gold-light mb-4">
+                  Plan Your Visit
+                </span>
+                <h2 className="font-serif text-3xl md:text-4xl font-bold text-white leading-snug mb-6">
+                  Tell us you&rsquo;re coming and{" "}
+                  <em className="text-gold-light italic">we&rsquo;ll be looking for you.</em>
+                </h2>
+                <div className="space-y-4 text-white/75 leading-relaxed">
+                  <p>
+                    Walking into a church for the first time can feel like a lot.
+                    Let us take the edge off it — send this and someone will meet
+                    you at the door, save you a seat, and get your kids where they
+                    need to be.
+                  </p>
+                  <p>
+                    Come as you are. There&rsquo;s no dress code, no pressure, and
+                    nobody is going to single you out.
+                  </p>
+                </div>
+                <ul className="mt-8 space-y-3">
+                  {[
+                    "Sunday Worship Celebration — 11:00 AM",
+                    "Word On Wednesday (WOW) — 6:00 PM",
+                    "1016 E Pawnee St, Wichita — free parking on site",
+                  ].map((line) => (
+                    <li key={line} className="flex items-start gap-3 text-sm text-white/80">
+                      <svg
+                        className="w-4 h-4 mt-0.5 text-gold flex-shrink-0"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
+                      </svg>
+                      {line}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </AnimateOnScroll>
+
+            <AnimateOnScroll delay={150}>
+              <RequestForm
+                endpoint="/api/visit"
+                kind="Plan a visit"
+                tone="dark"
+                extras={[
+                  {
+                    name: "service",
+                    label: "Which service are you planning on?",
+                    type: "select",
+                    options: [
+                      "Sunday Worship Celebration — 11 AM",
+                      "Word On Wednesday (WOW) — 6 PM",
+                      "Not sure yet",
+                    ],
+                    required: true,
+                    placeholder: "Choose a service…",
+                  },
+                  {
+                    name: "visitDate",
+                    label: "Which date do you have in mind?",
+                    type: "date",
+                  },
+                  {
+                    name: "party",
+                    label: "How many are coming?",
+                    type: "text",
+                    placeholder: "e.g. 2 adults and 3 kids",
+                  },
+                  {
+                    name: "kids",
+                    label: "Ages of any children",
+                    type: "text",
+                    placeholder: "So Victory Kids can be ready for them",
+                  },
+                ]}
+                messageLabel="Anything we should know?"
+                messagePlaceholder="Questions, accessibility needs, or how you heard about us."
+                messageRequired={false}
+                submitLabel="Let Them Know I'm Coming"
+                successTitle="We'll be looking for you."
+                successBody="Your note just went to the church. Someone will reach out before your visit — and we'll be watching for you at the door."
+              />
+            </AnimateOnScroll>
+          </div>
+        </section>
+
         {/* Map */}
-        <section className="pb-24 bg-warm-white">
+        <section className="pb-24 pt-24 bg-warm-white">
           <div className="max-w-7xl mx-auto px-6">
             <div className="h-[420px] rounded-3xl overflow-hidden shadow-sm border border-cream-dark relative bg-cream-dark">
               <div className="absolute inset-0 iframe-shimmer" />
