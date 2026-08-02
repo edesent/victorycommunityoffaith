@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import { Playfair_Display, Lato } from "next/font/google";
 import { SITE } from "@/config/site";
 import "./globals.css";
@@ -123,7 +124,25 @@ export default function RootLayout({
       lang="en"
       className={`${playfair.variable} ${lato.variable} antialiased`}
     >
-      <body className="min-h-screen flex flex-col">{children}</body>
+      <body className="min-h-screen flex flex-col">
+        {children}
+
+        {/*
+          Live chat bubble (WBC Chat). Messages land in the church's Slack —
+          channel C0BMBV8NZAS. The avatar is Dr. Pennington's photo, so visitors
+          see they're writing to a person. Any button on the site can open it
+          with window.WBCChat.open().
+        */}
+        <Script
+          src="https://slackwebsitechat.vercel.app/widget/wbc-chat.js"
+          data-api="https://slackwebsitechat.vercel.app"
+          data-key="wbc_714b0c9b3af11bf2fa520d1aa564c1a1593915aafbcc361a"
+          data-agent-icon-url="/photos/pastor.jpg"
+          data-accent-color="#661562"
+          data-greeting="Hi there! Thanks for visiting Victory Community of Faith. Is there anything I can help you with?"
+          strategy="afterInteractive"
+        />
+      </body>
     </html>
   );
 }

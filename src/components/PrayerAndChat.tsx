@@ -4,6 +4,14 @@ import { useState } from "react";
 import AnimateOnScroll from "./AnimateOnScroll";
 import { pastorShortName } from "@/config/site";
 
+// Opens the real live-chat bubble installed in src/app/layout.tsx. Falls back
+// to the contact page if the widget script hasn't loaded yet.
+function openLiveChat() {
+  const chat = (window as unknown as { WBCChat?: { open: () => void } }).WBCChat;
+  if (chat) chat.open();
+  else window.location.href = "/contact";
+}
+
 export default function PrayerAndChat() {
   const [submitted, setSubmitted] = useState(false);
   const [sending, setSending] = useState(false);
@@ -195,11 +203,16 @@ export default function PrayerAndChat() {
                 <div className="border-t border-cream-dark p-3 flex items-center gap-2 bg-cream/50">
                   <input
                     type="text"
+                    readOnly
+                    onFocus={openLiveChat}
+                    onClick={openLiveChat}
                     placeholder="Type your message..."
-                    className="flex-grow px-3 py-2 text-sm bg-transparent text-text-dark placeholder:text-text-muted focus:outline-none"
+                    aria-label="Open live chat"
+                    className="flex-grow px-3 py-2 text-sm bg-transparent text-text-dark placeholder:text-text-muted focus:outline-none cursor-pointer"
                   />
                   <button
                     type="button"
+                    onClick={openLiveChat}
                     aria-label="Send message"
                     className="w-9 h-9 rounded-full bg-brown-light text-white flex items-center justify-center hover:bg-brown transition-colors"
                   >
@@ -217,7 +230,10 @@ export default function PrayerAndChat() {
               </p>
               <button
                 type="button"
-                onClick={() => setOpen(true)}
+                onClick={() => {
+                  setOpen(true);
+                  openLiveChat();
+                }}
                 className="inline-flex items-center gap-2 bg-brown-light text-white font-semibold text-sm tracking-wide uppercase px-9 py-3.5 rounded-full border-2 border-brown-light hover:bg-brown hover:border-brown hover:-translate-y-0.5 hover:shadow-lg transition-all"
               >
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
